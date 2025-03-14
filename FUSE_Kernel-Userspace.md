@@ -15,14 +15,14 @@ graph TD
         Dev["/dev/fuse" Device]
     end
 
-    App -->|1/ System Call| VFS
-    VFS -->|2/ Route Request| FK
-    FK -->|3/ Write Request| Dev
-    Dev -->|4/ Read Request| FLib
-    FLib -->|5/ Process| FD
-    FD -->|6/ Write Response| FLib
-    FLib -->|7/ Write Response| Dev
-    Dev -->|8/ Read Response| FK
-    FK -->|9/ Return| VFS
-    VFS -->|10/ Return| App
+    App -->|1. System Call| VFS
+    VFS -->|2. Route Request| FK
+    FK -->|3. Write Request| Dev
+    Dev -->|4. Read Request| FLib
+    FLib -->|5. Process| FD
+    FD -->|6. Write Response| FLib
+    FLib -->|7. Write Response| Dev
+    Dev -->|8. Read Response| FK
+    FK -->|9. Return| VFS
+    VFS -->|10. Return| App
 ```
