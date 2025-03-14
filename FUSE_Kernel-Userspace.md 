@@ -1,0 +1,28 @@
+```mermaid
+graph TD
+    subgraph "User Space"
+        App[Application]
+        FD[FUSE Daemon/3FS]
+        subgraph "libfuse"
+            FLib[FUSE Library]
+            FBuf[FUSE Buffer]
+        end
+    end
+
+    subgraph "Kernel Space"
+        VFS[VFS Layer]
+        FK[FUSE Kernel Module]
+        Dev["/dev/fuse" Device]
+    end
+
+    App -->|1 System Call| VFS
+    VFS -->|2 Route Request| FK
+    FK -->|3 Write Request| Dev
+    Dev -->|4 Read Request| FLib
+    FLib -->|5 Process| FD
+    FD -->|6 Write Response| FLib
+    FLib -->|7 Write Response| Dev
+    Dev -->|8 Read Response| FK
+    FK -->|9 Return| VFS
+    VFS -->|10 Return| App
+```
